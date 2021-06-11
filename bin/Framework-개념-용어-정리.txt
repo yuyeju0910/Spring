@@ -1,0 +1,261 @@
+**Framework**
+- Spring IOC or DI 
+- Spring AOP 
+- MyBatis Framework 
+- Spring MVC ( Ajax , JSON , JQuery ) 
+- Spring Security
+- SpringBoot 
+- REST 
+- Spring Cloud(MSA) 
+
+----------------------------------------------------
+주요 개념 정리 
+- 높은 응집도(high cohesion)와 낮은 결합도(loose coupling)
+"모듈 간의 결합도는 최소화하고 모듈 내 요소들 간의 응집도를 최대화"
+응집도 : 자신의 역할에 집중하는 정도, 모듈 내 기능 수행을 위해 요소 간에 얼마만큼의 연관된 책임이 집중되어 있는 지를 나타내는 정도
+결합도 : 모듈 간 상호 의존 정도 
+참고 ) 모듈화 : 소프트웨어를 각 기능별로 분할하여 설계 및 구현하는 기법 
+
+- 객체 지향 ( Object - Oriented ) 
+시스템을 분석, 설계하는 기법 
+객체를 독립적인 기본 단위로 채택하고 , 객체와 객체의 관계를 중심으로 분석, 설계하는 기법 
+
+- Class : Object 설계도 
+- Object : 속성과 기능으로 구성 , 시스템의 기본 단위 
+- package : 클래스들을 분류 
+- Library : 라이브러리 , 재사용 가능한 프로그램들의 모음 ( jar : 자바 프로그램 압축 파일 확장자 ) 
+- Component : 프로그램이 실행될 때 하나의 독립적 기능 단위를 이루어 부품화될 때 컴포넌트라고 한다 
+- API : Application Programming Interface 
+		  응용프로그램을 개발하기 위해 제공하는 인터페이스 
+
+- Framework : 사전적 의미 -> 뼈대 , 틀 , 기반 (infrastructure)
+
+- Spring Framework : java 어플리케이션 설계 , 구현 , 테스트 , 운영(유지보수) 전반에 대한 기반(infrastructure)을 제공 
+						 생산성과 유지보수성 향상을 위한 다양한 인프라를 지원 
+						 ( 참고로 인프라란 다양한 라이브러리 및 디자인패턴을 지원 ) 
+						 프레임워크는 반완전한 어플리케이션이다 
+						 ( 개발자는 비지니스 로직에 집중할 수 있도록 기반을 제공하는 것이 프레임워크의 목적 )
+						 
+						 IOC(or DI) , AOP , MVC , Security 등을 지원하고
+						 MyBatis , JUnit 등과 같은 오픈 소스 프레임워크(라이브러리)와의 통합을 지원한다 
+
+- IOC :  Inversion Of Control  -> 제어의 역전 , 제어의 반전 , 역제어 
+		  -> 컴포넌트를 구성하는 인스턴스 생성과 의존 관계 연결처리를 IOC 컨테이너에 위임 
+- DI : Dependency Injection 의존성 주입 
+		 필요로 하는 의존대상(객체 or bean)을 injection주입을 통해 확보한다 		  
+- DL : Dependency Lookup 의존성 검색 		  
+		필요로 하는 의존대상(객체 or bean)을 lookup검색을 통해 확보한다 
+- IOC , DI , DL 을 적용했을 때 장점 
+  loose coupling 느슨한 결합도 
+  의존 대상 변경시 
+  기존 제어 방식은 객체 생성 및 확보 부분의 소스 코드 수정이 불가피 
+  IOC , DI , DL 을 적용하면 
+  상위 인터페이스 타입으로 관리되고 
+  IOC 컨테이너에 의해 객체가 확보되므로 
+  기존 소스 코드 수정을 최소화하여 관리할 수 있다 
+  
+ - IOC , DI , DL -> Singleton Design Pattern : 시스템 상에서 단 한번 객체를 생성해서 여러 곳에서 공유해 사용 
+ 						Spring IOC, DI, DL 은 bean(객체) 을 singleton 방식으로 운용 ( default )  
+  
+-  Maven(메이븐) -> Dependency Management (의존성 관리)
+   :어플리케이션이 필요한 많은 라이브러리를 일괄적으로 관리 
+   Maven 설정파일 -> pom.xml ( 참고 : pom -> Project Object Model ) 
+
+
+- AOP ( Aspect Oriented Programming ) 
+관점지향 프로그래밍 
+시스템을 핵심관심사항(Core Concern) 과 횡단관심사항or 공통관심사항( Cross-Cutting Concern )으로
+구분해 분석,설계,구현하는 것을 말한다 
+
+핵심관심사(Core Concern) : 시스템의 목적에 해당하는 주요 로직 ( ex - 결제 , 등록 .. ) 
+횡단관심사(Cross Cutting Concern) : 시스템의 여러 부분에 걸쳐 적용되는 공통적인 로직 ( ex - 보안,로깅,트랜잭션 등 ) 
+
+why? AOP는 시스템의 여러 영역에 걸쳐 공통적이고 반복적으로 적용된 횡단관심사를 분리하여 
+	  별도의 모듈에서 설계 , 구현 , 운영하는 프로그래밍 기법이다 
+	  
+ - AOP : Proxy Design Pattern -> Spring IOC Container는 AOP 적용시 실제 구현체가 아닌 Proxy(대리인) 객체를 
+ 									   사용자에게 반환시켜 core 실행시 cross-cutting logic 을 적용할 수 있게 한다 
+ 									   Proxy 객체는 구현체의 참조값을 가지고 있는 구조다  
+
+ - Log4j : 자바 로깅 유틸리티(라이브러리) 
+ 			설정 파일(log4j2.xml)에서 로그 레벨을 지정해 콘솔 또는 파일에 로깅할 수 있다 
+ 			FATAL ( 가장 높은 레벨 )
+ 			ERROR 
+ 			WARN
+ 			INFO
+ 			DEBUG
+ 			TRACE ( 가장 낮은 레벨 )   
+ 			만약 INFO 레벨로 설정하면 INFO 이상 WARN , ERROR , FATAL 이 로깅된다 
+ 
+  - MyBatis Framework 
+    영속성 계층 프레임워크 ( persistence layer framework ) 
+    JDBC Framework 
+    자바 어플리케이션과 데이터베이스 연동시 반복적인 작업(Connection,PreparedStatement,ResultSet,close)
+    을 프레임워크에서 지원하여 생산성이 향상 
+    SQL 을 mapper xml 에 정의하고 어플리케이션에서 사용   
+
+ - 스프링 설정 방식 
+   설정정보 ( 메타데이터 ) 
+   - XML : 코드와 설정이 분리 , 유지보수성에 초점 
+   - Annotation : 코드 상에서 명시 , 생산성에 초점    
+   
+   Annotation : 의미있는 주석 -> Annotation 은 컴파일과 런타임시에 영향을 주는 의미있는 주석이다    
+   Spring Annotation -> 설정 정보의 역할    
+   Spring configuration (스프링 설정) -> XML + Annotation + Java Config + properties 
+
+   Spring Annotation 종류
+   @Component 컴포넌트 계열 어노테이션 -> 스프링 컨테이너에 해당 클래스 객체를 생성하도록 명시 
+   -> 컴포넌트 계열 어노테이션은 다음과 같다 
+   @Repository : 영속성 계층에서 사용 ( ex - MemberDAOImpl ) 
+   @Service : 비즈니스 계층(or 서비스 계층)에서 사용 ( ex - MemberServiceImpl ) 
+   @Controller : 프리젠테이션 계층 ( or 컨트롤러 영역) 에서 사용 ( ex - MemberController ) 
+   
+   DI(Dependency Injection) 계열 어노테이션 
+   -> 스프링 컨테이너로부터 의존성 주입(필요로 하는 객체) 받고자 할 때 사용 
+   @AutoWired : 의존대상객체를 타입으로 검색해서 주입 
+   					-> 동일한 인터페이스의 구현 객체가 어려개일 경우 Exception 발생 
+   @Resource : 의존대상객체를 타입으로 검색해 주입 
+   				  @Resource(name="bean id") 을 명시하면 bean id로 검색해 주입 
+   				  
+   spring-config.xml 에서 IOC, DI, DL에 대한 설정 
+   <context:componet-scan base-package="org.kosta,aop.common">
+   위 설정은 org.kosta 팩키지 및 하위 팩키지의 컴포넌트 계열 어노테이션 명시된 클래스를 탐색해서 bean(객체) 생성하고 
+   DI 계열 어노테이션 명시된 대상에 대해 DI 처리한다 				  
+   				  
+   	springMvc
+   	spring framework 기반 java web application을 위한 기술
+   	 Model2 Architecture Mvc Pattern + FrontController Design Pattern 기반
+   	 Model2 MVC ->웹 어플리케이션 설계방식 
+   	 
+   	 
+   	model:Data Access와 Business login을 담당 주기술은 java
+   	View :클라이언트에 응답하는 정보(웹페이지 or 데이터)	 주기술은 jsp or json
+   	Controller :클라이언트 요청과 응답에 대한 제어
+   				클라이언트 요청을 분석 모델과 연동,적절한 view로 응답하도록 제어하는 역할
+    주기술은 Servlet 				 
+    
+    FrontController Design Pattern :Spring MVC는 MVC와 FrontController Design Pattern
+    기본적으로 적용
+    모든 클라이언트 요청을 하나의 진입점으로 모아서 처리
+    일관성 있는 정책(보안-인증,인가,인코딩, 데이터수집,예외처리 정책)을 적용하고 운영할 수 있음 
+   		
+   	SpringMVC 주요구성 요소
+   	DispatcherServlet : Front Controller Servlet -> spring config 정보로딩(IOC(DI,DL)
+   	,AOP, MVC 설정 로딩)
+   	
+   	HandlerMapping : 요청을 처리할 컨트롤러 연결
+   						:RequestMappingHandlerMapping 주로사용			  
+   	HandlerAdapter : 핸들러 매핑에서 결정된 핸들러(컨트롤러) 장보로 해당 컨트롤러 로직을 실행하는 메서드를
+   	실행한다 requestMappingHandlerAdapter 를사용한다
+   	
+   	ViewResolver :적절한 view 를 찾아서 응답하도록 하는 역할
+   	InternalResourceViewResolver주로 사용
+   	--------------------------------------------------------------------
+   	위의 구성요소는 Spring framework에서 제공하므로 설정을 통해 사용
+   	아래 구성요소는  개발자가직접 구성해야하는 요소다
+   	
+   	Controller : 개발자가 컨트롤러 로직을 구현한다 @controller @RequestMapping 어노테이션 사용
+   	View :개발자가 응답할 웹페이지 또는 데이터를 구현			  
+   	
+   	-SpringMVC 작업 처리 순서
+   	클라이언트가 request 하면,모든 요청의 진입점 FrontController인 DispatcherServlet이
+   	HandlerMapping 에게 어떤 컨트롤러가 처리 할지 에대한 의뢰를 하고 
+   	이를 바탕으로 실제 컨트롤러의 메서드를 HandlerAdapter가  컨트롤러 메서드를
+   	실행하고 실행(session 처리 model 연동 등)하고 실행
+   	 후 반환하는 view 정보를 viewResolver에 의거해  클라이언트에게 View를
+   	응답한다 
+   				  
+   - springmvc project 에서  Spring 설정 로딩
+   1.WEB APPLICATION의 Deployment Descriptor인 web.xml에서
+    FrontControllerServlet인 spring의 DispatcherServlet을 설정한다
+    이때 지정한 Servlet-name에 의거해 Spring 설정 파일을 DispatcherServlet이
+    spring 설정을 로딩하게 된다
+    Servlet 기술인 Filter을 이용해 post 방식 한글 인코딩 처리를 한다
+    스프링에서 제공하는 CharacterEncodingFiler를 이용하면 된다.
+    
+    2. DispatcherSerlvet의 ServletConfig init-param(param name:contextConfigLocation)을 이용해
+    스프링 설정 파일 로딩. 이 방식은 스프링 설정 파일을 여러개일 경우 사용한다
+    
+    -SpringMVC에서 자주사용하는 어노테이션
+    @Controller: 컨트롤러 객체 생성 
+    @RequestMapping(url):클라이언트 요청 url에 컨트롤러 메서드 연결
+    @RequestMapping(method=RequestMethod.Post,value= url) :post방식만 허용
+    위 어노테이션을  spring 4.3 버전 이상에서는
+    @PostMapping 으로 사용 할수도있다 (@PostMapping(url), @GetMapping(url))
+    
+    -어노테이션 기반 스프링 MVC 설정
+    <mvc:annotation-driven />
+   				  
+   	**junit**
+   	tdd(test Driven Development )Frame work
+   	자바			  
+   				  
+   				  
+   	**ajax**			  
+   	Ajax(Asynchronus JavaScrpit And xml) 비동기 웹통신, 웹통신 기법
+   	전체 페이지 로딩 없이 필요한 데이터만 통신
+   	
+   	XMLHttpRequest:Ajax 통신을 위한 자바스크립트 객체
+   	
+   	Json or xml ->Ajax 통신에서 구조화된 데이터를  송수신할 때 사용
+   	
+   	웹프로그래밍에 있어서 비동기 Ajax 통신이란
+   	필요한 데이터만 응답받는 방식이다.
+   	사용자는 페이지 변경 없이 필요한 데이터만 응답받음으로 
+   	응답여부와 관계없이 작업을 지속할 수 있음
+   				  
+   	xml : 설정 정보의 역할과 데이터 송수신 역할
+   			Ajax에서는 데이터 송수신 역할을 한다
+   
+   json: javascript object notation 자바스크립트 객체 표기법,경량의 데이터 교환 형식
+ 	  		ajax에서 구조화된  데이터 송수신 역할을 함
+ 	  		
+ 	 참고)초기에는 (2000년대 초중반) xml을 통신용으로 사용했고,
+ 	 최근에는 성능 및 개발 생산성을 높은 json을 사용
+ 	 		
+   			
+   jQuery : 다양한 기능을 지원하는 자바스크립트 라이브러리
+   			  dom(document object model)손쉽게 제어할 수 있도록 다양한 함수를 지원
+   			  	
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
