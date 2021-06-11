@@ -1,0 +1,43 @@
+1.txt파일 응답하기(기본 경로는 resources/static)
+2.스프링부트가 지원하는 .mustache파일 응답하기
+3. 스프링부트가 버린.jsp파일응답하기
+
+.jsp와 .mustache 파일은 템플릿 엔진을 가지고있다
+템플릿 엔진이란 html파일에 java코드를 쓸수 있는 친구들이다
+appication.yml->
+-->viewResolver 설정
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+
+--
+package com.cos.controllerdemo.web;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller //파일을 리턴할것이라서
+public class HttpRespController {
+
+	@GetMapping("/txt")
+	public String txt() {
+		return "a.txt"; //프레임워크 사용(틀이 이미정해져있음) -일반정적파일들은 resources/static 폴더내부가 디폴트경로
+	}
+	
+	@GetMapping("/mus")
+	public String mus() {
+		return"b"; //머스태취 탬플릿 엔진 라이브러리 등록 완료 -template폴더안에.mustache를 두면
+		//확장자 없이 파일명만 적으면 자동으로 찾아감
+	}
+	
+	@GetMapping("/jsp")
+	public String jsp() {
+		return "c"; //jsp 엔진사용 src/main/webapp 폴더가 디폴트 경로
+					// 	WEB-INF/view/c.jsp -(ViewResolver)해당파일찾아줌
+					//suffix가.jsp
+	}
+	
+	
+}
